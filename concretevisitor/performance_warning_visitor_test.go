@@ -4,11 +4,27 @@ import (
 	"testing"
 	"time"
 	"visitor-pattern/entity"
+	"visitor-pattern/factory"
 
 	"github.com/stretchr/testify/assert"
 )
 
+var notifier *factory.NotifierMock
+var performanceWarningVisitor PerformanceWarningVisitor
+
+type MockNotifierDecorator struct {
+}
+
+func (mock MockNotifierDecorator) SendMessage(employee entity.Employee, messages string) {
+	//mocking notifications library
+}
+func NewMockNotifierDecorator() *MockNotifierDecorator {
+	return &MockNotifierDecorator{}
+}
+
 func TestVisitStaffWarningNotification(t *testing.T) {
+
+	notifier.Mock.On("StaffNotifier").Return(NewMockNotifierDecorator())
 
 	testSuites := []struct {
 		name     string
@@ -37,13 +53,15 @@ func TestVisitStaffWarningNotification(t *testing.T) {
 
 	for _, test := range testSuites {
 		t.Run(test.name, func(t *testing.T) {
-			result, _ := PerformanceWarningVisitor{}.VisitStaff(&test.input)
+			result, _ := performanceWarningVisitor.VisitStaff(&test.input)
 			assert.Equal(t, test.expected, result)
 		})
 	}
 }
 
 func TestVisitSupervisorWarningNotification(t *testing.T) {
+
+	notifier.Mock.On("SupervisorNotifier").Return(NewMockNotifierDecorator())
 
 	testSuites := []struct {
 		name     string
@@ -74,13 +92,15 @@ func TestVisitSupervisorWarningNotification(t *testing.T) {
 
 	for _, test := range testSuites {
 		t.Run(test.name, func(t *testing.T) {
-			result, _ := PerformanceWarningVisitor{}.VisitSupervisor(&test.input)
+			result, _ := performanceWarningVisitor.VisitSupervisor(&test.input)
 			assert.Equal(t, test.expected, result)
 		})
 	}
 }
 
 func TestVisitManagerWarningNotification(t *testing.T) {
+
+	notifier.Mock.On("ManagerNotifier").Return(NewMockNotifierDecorator())
 
 	testSuites := []struct {
 		name     string
@@ -111,8 +131,14 @@ func TestVisitManagerWarningNotification(t *testing.T) {
 
 	for _, test := range testSuites {
 		t.Run(test.name, func(t *testing.T) {
-			result, _ := PerformanceWarningVisitor{}.VisitManager(&test.input)
+			result, _ := performanceWarningVisitor.VisitManager(&test.input)
 			assert.Equal(t, test.expected, result)
 		})
 	}
+}
+
+func TestMain(m *testing.M) {
+	notifier = factory.NewNotifierMock()
+	performanceWarningVisitor = PerformanceWarningVisitor{Notif: notifier}
+	m.Run()
 }

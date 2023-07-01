@@ -5,6 +5,7 @@ import (
 	"time"
 	visitor "visitor-pattern/concretevisitor"
 	entities "visitor-pattern/entity"
+	"visitor-pattern/factory"
 )
 
 func main() {
@@ -13,7 +14,10 @@ func main() {
 
 	employees := make([]entities.Employee, 0)
 
-	performanceNotification := visitor.PerformanceWarningVisitor{}
+	performanceNotification := visitor.PerformanceWarningVisitor{
+		Notif: factory.NewNotificator(),
+	}
+
 	bonusIncome := visitor.BonusIncomeVisitor{}
 
 	employees = append(employees,

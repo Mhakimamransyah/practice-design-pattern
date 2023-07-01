@@ -5,19 +5,31 @@ import (
 	"visitor-pattern/entity"
 )
 
-func StaffNotifier() entity.Notifier {
+type NotificatorContract interface {
+	StaffNotifier() entity.Notifier
+	SupervisorNotifier() entity.Notifier
+	ManagerNotifier() entity.Notifier
+}
+
+type Notificator struct{}
+
+func (notifier *Notificator) StaffNotifier() entity.Notifier {
 	return decorator.NewPushNotificationDecorator()
 }
 
-func SupervisorNotifier() entity.Notifier {
+func (notifier *Notificator) SupervisorNotifier() entity.Notifier {
 	pushNotification := decorator.NewPushNotificationDecorator()
 	emailNotification := decorator.NewEmailDecorator(pushNotification)
 	return emailNotification
 }
 
-func ManagerNotifier() entity.Notifier {
+func (notifier *Notificator) ManagerNotifier() entity.Notifier {
 	pushNotification := decorator.NewPushNotificationDecorator()
 	emailNotification := decorator.NewEmailDecorator(pushNotification)
 	whatsAppNotification := decorator.NewWhatsAppDecorator(emailNotification)
 	return whatsAppNotification
+}
+
+func NewNotificator() *Notificator {
+	return &Notificator{}
 }

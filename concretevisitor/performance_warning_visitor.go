@@ -11,13 +11,14 @@ const WARNING = "warning"
 const STERN_WARNING = "stern-warning"
 
 type PerformanceWarningVisitor struct {
+	Notif factory.NotificatorContract
 }
 
 func (visitor PerformanceWarningVisitor) VisitStaff(staff *entities.Staff) (interface{}, error) {
 
 	var warningType string
 
-	notification := factory.StaffNotifier()
+	notification := visitor.Notif.StaffNotifier()
 
 	if staff.PerformancePercentage < 30 {
 		warningType = STERN_WARNING
@@ -40,7 +41,7 @@ func (visitor PerformanceWarningVisitor) VisitSupervisor(spv *entities.Superviso
 	var warningType string
 
 	durationInYear := (time.Now()).Sub(spv.JoinDate).Hours() / 8760
-	notification := factory.SupervisorNotifier()
+	notification := visitor.Notif.SupervisorNotifier()
 
 	if spv.PerformancePercentage < 30 {
 		warningType = STERN_WARNING
@@ -67,7 +68,7 @@ func (visitor PerformanceWarningVisitor) VisitManager(manager *entities.Manager)
 	var warningType string
 
 	Age := (time.Now()).Sub(manager.BirthDate).Hours() / 8760
-	notification := factory.ManagerNotifier()
+	notification := visitor.Notif.ManagerNotifier()
 
 	if manager.PerformancePercentage < 40 {
 		warningType = STERN_WARNING
