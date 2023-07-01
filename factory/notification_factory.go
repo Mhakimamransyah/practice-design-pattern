@@ -1,8 +1,8 @@
 package factory
 
 import (
-	"visitor-pattern/decorator"
-	"visitor-pattern/entity"
+	"github.com/Mhakimamransyah/practice-design-pattern/decorator"
+	"github.com/Mhakimamransyah/practice-design-pattern/entity"
 )
 
 type NotificatorContract interface {

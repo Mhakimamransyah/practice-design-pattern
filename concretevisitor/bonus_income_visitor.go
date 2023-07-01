@@ -2,7 +2,8 @@ package concretevisitor
 
 import (
 	"fmt"
-	entities "visitor-pattern/entity"
+
+	entities "github.com/Mhakimamransyah/practice-design-pattern/entity"
 )
 
 const STAFF_BONUS_INCOME = 1000000

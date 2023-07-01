@@ -3,8 +3,9 @@ package concretevisitor
 import (
 	"fmt"
 	"time"
-	entities "visitor-pattern/entity"
-	"visitor-pattern/factory"
+
+	entities "github.com/Mhakimamransyah/practice-design-pattern/entity"
+	"github.com/Mhakimamransyah/practice-design-pattern/factory"
 )
 
 const WARNING = "warning"

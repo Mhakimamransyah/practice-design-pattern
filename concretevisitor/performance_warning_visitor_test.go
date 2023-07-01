@@ -3,8 +3,9 @@ package concretevisitor
 import (
 	"testing"
 	"time"
-	"visitor-pattern/entity"
-	"visitor-pattern/factory"
+
+	"github.com/Mhakimamransyah/practice-design-pattern/entity"
+	"github.com/Mhakimamransyah/practice-design-pattern/factory"
 
 	"github.com/stretchr/testify/assert"
 )

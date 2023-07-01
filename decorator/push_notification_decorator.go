@@ -2,7 +2,8 @@ package decorator
 
 import (
 	"fmt"
-	"visitor-pattern/entity"
+
+	"github.com/Mhakimamransyah/practice-design-pattern/entity"
 )
 
 type PushNotificationDecorator struct{}

@@ -1,4 +1,4 @@
-module visitor-pattern
+module github.com/Mhakimamransyah/practice-design-pattern
 
 go 1.19
 

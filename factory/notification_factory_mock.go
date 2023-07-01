@@ -1,7 +1,7 @@
 package factory
 
 import (
-	"visitor-pattern/entity"
+	"github.com/Mhakimamransyah/practice-design-pattern/entity"
 
 	"github.com/stretchr/testify/mock"
 )

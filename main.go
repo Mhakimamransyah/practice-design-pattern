@@ -3,9 +3,10 @@ package main
 import (
 	"fmt"
 	"time"
-	visitor "visitor-pattern/concretevisitor"
-	entities "visitor-pattern/entity"
-	"visitor-pattern/factory"
+
+	visitor "github.com/Mhakimamransyah/practice-design-pattern/concretevisitor"
+	entities "github.com/Mhakimamransyah/practice-design-pattern/entity"
+	"github.com/Mhakimamransyah/practice-design-pattern/factory"
 )
 
 func main() {
