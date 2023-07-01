@@ -54,7 +54,7 @@ func TestVisitSupervisorBonusIncome(t *testing.T) {
 			input: entity.Supervisor{
 				Id:                    1111,
 				Name:                  "TestSuites 1",
-				PerformancePercentage: 70,
+				PerformancePercentage: 85,
 			},
 			expected: SUPERVISOR_BONUS_INCOME,
 		},
@@ -89,7 +89,7 @@ func TestVisitManagerBonusIncome(t *testing.T) {
 			input: entity.Manager{
 				Id:                    1111,
 				Name:                  "TestSuites 1",
-				PerformancePercentage: 60,
+				PerformancePercentage: 90,
 			},
 			expected: MANAGER_BONUS_INCOME,
 		},
