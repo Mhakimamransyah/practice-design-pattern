@@ -1,6 +1,8 @@
 package entity
 
-import "time"
+import (
+	"time"
+)
 
 type Supervisor struct {
 	Id                    int
@@ -11,6 +13,7 @@ type Supervisor struct {
 	WhatsAppNumber        int
 	Email                 string
 	TokenNotifications    string
+	Status                bool
 }
 
 func (spv Supervisor) Accept(visitor Visitor) {
@@ -31,4 +34,8 @@ func (spv Supervisor) GetEmail() string {
 
 func (spv Supervisor) GetTokenNotifications() string {
 	return spv.TokenNotifications
+}
+
+func (spv Supervisor) GetStatus() bool {
+	return spv.Status
 }

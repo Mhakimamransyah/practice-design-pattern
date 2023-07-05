@@ -1,6 +1,8 @@
 package entity
 
-import "time"
+import (
+	"time"
+)
 
 type Staff struct {
 	Id                    int
@@ -11,6 +13,7 @@ type Staff struct {
 	WhatsAppNumber        int
 	Email                 string
 	TokenNotifications    string
+	Status                bool
 }
 
 func (staff Staff) Accept(v Visitor) {
@@ -31,4 +34,8 @@ func (staff Staff) GetEmail() string {
 
 func (staff Staff) GetTokenNotifications() string {
 	return staff.TokenNotifications
+}
+
+func (staff Staff) GetStatus() bool {
+	return staff.Status
 }

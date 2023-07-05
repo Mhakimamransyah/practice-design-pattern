@@ -6,4 +6,5 @@ type Employee interface {
 	GetWhatsAppNumber() int
 	GetEmail() string
 	GetTokenNotifications() string
+	GetStatus() bool
 }

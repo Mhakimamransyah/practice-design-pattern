@@ -7,6 +7,7 @@ import (
 	visitor "github.com/Mhakimamransyah/practice-design-pattern/concretevisitor"
 	entities "github.com/Mhakimamransyah/practice-design-pattern/entity"
 	"github.com/Mhakimamransyah/practice-design-pattern/factory"
+	"github.com/Mhakimamransyah/practice-design-pattern/iterator"
 )
 
 func main() {
@@ -31,6 +32,7 @@ func main() {
 			WhatsAppNumber:        628123456,
 			TokenNotifications:    "token-kjopdjfiuer-023*(*&YHkjkjkj)-odonkor",
 			Email:                 "odonkor@gmail.com",
+			Status:                true,
 		}, entities.Staff{
 			Id:                    12344,
 			Name:                  "Deryl Salvio",
@@ -40,6 +42,7 @@ func main() {
 			WhatsAppNumber:        628123478,
 			TokenNotifications:    "token-kjopdjfiuer-023*(*&YHkckckck)-deryl",
 			Email:                 "dsalvio@outlook.co.id",
+			Status:                true,
 		},
 		entities.Staff{
 			Id:                    12343,
@@ -50,6 +53,7 @@ func main() {
 			WhatsAppNumber:        628129878,
 			TokenNotifications:    "token-kjopdjfiuer-023*(*&YHkckckck)-pacquita",
 			Email:                 "pedro_pacman@starkindustries.co.id",
+			Status:                true,
 		},
 		entities.Supervisor{
 			Id:                    12342,
@@ -60,6 +64,7 @@ func main() {
 			WhatsAppNumber:        628129668,
 			TokenNotifications:    "token-kjopdjfiuer-023*(*&YHkckckck)-maulo",
 			Email:                 "omar.maulo.omar@starkindustries.co.id",
+			Status:                true,
 		},
 		entities.Supervisor{
 			Id:                    12340,
@@ -70,6 +75,18 @@ func main() {
 			WhatsAppNumber:        628219878,
 			TokenNotifications:    "token-kjopdjfiuer-023*(*&YHkckckck)-alex-otario",
 			Email:                 "alexis2.otario@gmail.com",
+			Status:                false,
+		},
+		entities.Supervisor{
+			Id:                    12321,
+			Name:                  "Leon Guzman",
+			JoinDate:              time.Date(2010, time.August, 05, 0, 0, 0, 0, time.UTC),
+			BirthDate:             time.Date(1988, time.January, 14, 0, 0, 0, 0, time.UTC),
+			PerformancePercentage: 76,
+			WhatsAppNumber:        628219912,
+			TokenNotifications:    "token-kjopdjfiuer-023*(*&YHkckckck)-guzzy",
+			Email:                 "leon.guzman.guzzy@gmail.com",
+			Status:                true,
 		},
 		entities.Manager{
 			Id:                    12312,
@@ -80,10 +97,16 @@ func main() {
 			WhatsAppNumber:        628219999,
 			TokenNotifications:    "token-kjopdjfiuer-023*(*&YHkckckck)-ow3l3",
 			Email:                 "zakaria.ow.el.eo@omnicorp.com",
+			Status:                true,
 		},
 	)
 
-	for _, employee := range employees {
+	// iterate only for active employee
+	employeesIter := iterator.NewActiveEmployeeIterator(employees, true)
+
+	for employeesIter.HasMore() {
+
+		employee := employeesIter.GetNext()
 
 		// accept performance notification visitor
 		employee.Accept(performanceNotification)
